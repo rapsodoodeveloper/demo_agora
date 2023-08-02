@@ -15,7 +15,8 @@ def create_data(cr, registry):
     for company in companies:
         env['res.partner'].create({
             'name': 'Generic Client {}'.format(company.name),
-            'company_id': company.id
+            'company_id': company.id,
+            'is_generic': True
         })
         for order in order_data:
             env['preparation.order'].create({
@@ -41,6 +42,14 @@ def create_data(cr, registry):
             'default_code': 'Discount',
             'invoice_policy': 'order',
             'is_product_discount': True,
+            'company_id': company.id
+        })
+        env['product.template'].create({
+            'name': 'Menu [{}]'.format(company.name),
+            'type': 'service',
+            'default_code': 'Menu',
+            'is_product_menu': True,
+            'invoice_policy': 'order',
             'company_id': company.id
         })
 

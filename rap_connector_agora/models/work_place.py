@@ -18,3 +18,9 @@ class WorkPlace(models.Model):
         string='Company',
         comodel_name='res.company'
     )
+    analytic_group_id = fields.Many2one(
+        string='Analytic Group',
+        comodel_name='account.analytic.group'
+    )
+
+
